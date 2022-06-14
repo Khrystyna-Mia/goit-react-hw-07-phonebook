@@ -4,7 +4,7 @@ Użyj tego
 [szablonu projektu React](https://github.com/goitacademy/react-homework-template#readme)
 jako punktu wyjścia dla swojej aplikacji.
 
-# Kryteria zaliczenia
+# Kryteria
 
 - Stworzone repozytorium `goit-react-hw-07-phonebook`.
 - Wykorzystana biblioteka `Redux Toolkit`.

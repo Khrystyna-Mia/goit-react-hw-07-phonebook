@@ -4,7 +4,7 @@
 [шаблон React-проекту](https://github.com/goitacademy/react-homework-template#readme)
 як стартову точку своєї програми.
 
-# Критерії приймання
+# Критерії
 
 - Створений репозиторій `goit-react-hw-07-phonebook`
 - Використана бібліотека `Redux Toolkit`
