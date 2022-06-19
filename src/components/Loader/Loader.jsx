@@ -1,7 +1,7 @@
-import { SyncLoader } from 'react-spinners';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 const Loader = () => {
-  return <SyncLoader width="20" height="20" margin="2" color="ff0000" />;
+  return <BeatLoader size={10} color="red" />;
 };
 
 export default Loader;
