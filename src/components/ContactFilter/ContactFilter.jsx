@@ -1,24 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilter } from '../../redux/contacts/contacts-selector';
-import { filterContact } from '../../redux/contacts/contacts-actions';
-import { nanoid } from 'nanoid';
+import { filterContacts } from '../../redux/contacts/contacts-actions';
 import { Label, Input } from './ContactFilter.styled';
 
 const ContactFilter = () => {
   const dispatch = useDispatch();
-  const value = useSelector(getFilter);
-  const filterId = nanoid();
+  const filter = useSelector(state => state.filter);
+
+  const handleChangeFilter = e =>
+    dispatch(filterContacts(e.currentTarget.value));
 
   return (
     <>
-      <Label htmlFor={filterId}>Find contacts by name</Label>
+      <Label>Find contacts by name</Label>
 
       <Input
-        id={filterId}
         type="text"
         name="filter"
-        value={value}
-        onChange={e => dispatch(filterContact(e.target.value))}
+        value={filter}
+        onChange={handleChangeFilter}
       />
     </>
   );
