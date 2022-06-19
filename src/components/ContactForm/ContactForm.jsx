@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contacts-actions';
-import { getContacts } from 'redux/contacts/contacts-selector';
+import {
+  useFetchContactsQuery,
+  useAddContactMutation,
+} from '../../services/contactsApi';
+import Loader from 'components/Loader';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix';
 import { Form, Label, Input, SubmitButton } from './ContactForm.styled';
 
 const ContactForm = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const { data: contacts } = useFetchContactsQuery();
+  const [addContact, { isLoading }] = useAddContactMutation();
 
   const nameId = nanoid();
   const numberId = nanoid();
@@ -51,7 +53,7 @@ const ContactForm = () => {
     } else if (checkValidNumber(number)) {
       Notify.failure(`😔 Please, enter the correct number phone`);
     } else {
-      dispatch(addContact({ name, number }));
+      addContact({ name, phone: number });
     }
 
     resetInput();
@@ -88,7 +90,9 @@ const ContactForm = () => {
         onChange={handleChange}
       />
 
-      <SubmitButton type="submit">Add contact</SubmitButton>
+      <SubmitButton type="submit" disabled={isLoading}>
+        {isLoading ? <Loader /> : 'Add contact'}
+      </SubmitButton>
     </Form>
   );
 };
